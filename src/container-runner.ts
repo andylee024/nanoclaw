@@ -120,6 +120,13 @@ function buildVolumeMounts(
     '.claude',
   );
   fs.mkdirSync(groupSessionsDir, { recursive: true });
+  // When NanoClaw runs as root, this host directory can be root-owned and
+  // the container's node user cannot create ~/.claude/debug. Keep it writable.
+  try {
+    fs.chmodSync(groupSessionsDir, 0o777);
+  } catch (err) {
+    logger.debug({ err, groupSessionsDir }, 'Failed to chmod group session dir');
+  }
   const settingsFile = path.join(groupSessionsDir, 'settings.json');
   if (!fs.existsSync(settingsFile)) {
     fs.writeFileSync(
