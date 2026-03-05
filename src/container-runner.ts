@@ -125,7 +125,10 @@ function buildVolumeMounts(
   try {
     fs.chmodSync(groupSessionsDir, 0o777);
   } catch (err) {
-    logger.debug({ err, groupSessionsDir }, 'Failed to chmod group session dir');
+    logger.debug(
+      { err, groupSessionsDir },
+      'Failed to chmod group session dir',
+    );
   }
   const settingsFile = path.join(groupSessionsDir, 'settings.json');
   if (!fs.existsSync(settingsFile)) {
