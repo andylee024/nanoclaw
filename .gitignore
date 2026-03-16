@@ -16,6 +16,8 @@ groups/*
 groups/main/*
 groups/global/*
 !groups/main/CLAUDE.md
+!groups/main/chief-of-staff/
+!groups/main/chief-of-staff/**
 !groups/global/CLAUDE.md
 
 # Secrets
