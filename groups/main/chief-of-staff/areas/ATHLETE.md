@@ -5,7 +5,8 @@ athletic life planning.
 
 ## Source Of Truth
 
-- workout planning and logging: `whatsapp_clawfitness`
+- workout planning and logging: dedicated training runtime
+  (`telegram_clawfitness`, `whatsapp_clawfitness`, or equivalent)
 - training data and progression: mounted `Train` project
 - actual scheduled classes, runs, games, and sessions: `Google Calendar`
 
@@ -20,7 +21,7 @@ Do not duplicate detailed workout logs in Markdown.
   level
 - prepare weekly summaries and decisions, not raw set-by-set logs
 
-## What Fitness Runtime Owns
+## What Dedicated Training Runtime Owns
 
 - today's plan
 - workout logging

@@ -31,8 +31,8 @@ live here.
 
 ## Layer 3: Local Operating System
 
-This folder and other ignored group folders are where ongoing personal
-adaptation should happen.
+This folder and other group folders are where ongoing personal adaptation
+should happen.
 
 This is where to keep:
 
@@ -81,15 +81,25 @@ surface.
 Current split:
 
 - `main`: chief of staff, cross-domain planning, decisions, admin
-- `whatsapp_clawfitness`: training execution and workout logs
+- dedicated training runtime (`telegram_clawfitness`,
+  `whatsapp_clawfitness`, or equivalent): training execution and workout logs
 - `Google Calendar`: schedule
 - `Linear`: work instances and recurring routines
+
+## Messaging Topology
+
+- Keep exactly one privileged `main` chat for chief-of-staff work and admin.
+- Add specialist chats when a domain benefits from isolated memory, prompts,
+  and tools.
+- Training should live in its own dedicated chat rather than in `main`.
+- For Telegram, use separate chats rather than topics because routing is keyed
+  by `chat.id`, not by thread.
 
 ## Update Discipline
 
 To keep upstream updates clean:
 
-1. Keep personal rules and preferences in ignored local docs, not tracked
+1. Keep personal rules and preferences in group docs, not in tracked core
    source files.
 2. Keep fork-level code changes limited to real capabilities.
 3. Do not leave long-lived WIP mixed into the branch you use for upstream

@@ -11,8 +11,9 @@ NanoClaw code can stay relatively clean.
   and user decisions
 - `Google Calendar` is the source of truth for time, dates, travel, classes,
   and commitments
-- `whatsapp_clawfitness` plus the mounted `Train` project are the source of
-  truth for workout execution, progression, and logging
+- the dedicated training runtime (`telegram_clawfitness`,
+  `whatsapp_clawfitness`, or equivalent) plus the mounted `Train` project are
+  the source of truth for workout execution, progression, and logging
 - this folder is the source of truth for durable preferences, playbooks,
   architecture, and review guidance
 

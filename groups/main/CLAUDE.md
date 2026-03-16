@@ -79,8 +79,9 @@ Use these systems of record:
 
 - `Linear` is the live tracker for multi-step work, follow-up, and decisions
 - `Google Calendar` is the source of truth for actual time commitments
-- `whatsapp_clawfitness` plus `Train` are the source of truth for workout
-  execution and logging
+- the dedicated training runtime (`telegram_clawfitness`,
+  `whatsapp_clawfitness`, or equivalent) plus `Train` are the source of truth
+  for workout execution and logging
 - local chief-of-staff docs are for durable guidance, preferences, playbooks,
   and area strategy
 
@@ -155,7 +156,9 @@ Available groups are provided in `/workspace/ipc/available_groups.json`:
 }
 ```
 
-Groups are ordered by most recent activity. The list is synced from WhatsApp daily.
+Groups are ordered by most recent activity. WhatsApp groups can be refreshed
+from the channel; Telegram chats appear after the bot has seen traffic in
+them.
 
 If a group the user mentions isn't in the list, request a fresh sync:
 
@@ -169,11 +172,11 @@ Then wait a moment and re-read `available_groups.json`.
 
 ```bash
 sqlite3 /workspace/project/store/messages.db "
-  SELECT jid, name, last_message_time
+  SELECT jid, name, channel, is_group, last_message_time
   FROM chats
-  WHERE jid LIKE '%@g.us' AND jid != '__group_sync__'
+  WHERE jid != '__group_sync__' AND is_group = 1
   ORDER BY last_message_time DESC
-  LIMIT 10;
+  LIMIT 20;
 "
 ```
 
@@ -221,6 +224,17 @@ Folder naming convention — channel prefix with underscore separator:
 - Discord "General" → `discord_general`
 - Slack "Engineering" → `slack_engineering`
 - Use lowercase, hyphens for the group name part
+
+### Recommended Service Topology
+
+- Keep exactly one `main` group. It is the chief-of-staff control plane and
+  should remain the only `isMain: true` group.
+- Put detailed training execution in a dedicated registered group such as
+  `telegram_clawfitness` or `whatsapp_clawfitness`.
+- Use `requiresTrigger: false` for personal specialist chats where every
+  message should be processed.
+- For Telegram, use separate chats rather than forum topics. Routing keys off
+  `chat.id`, so topics inside one chat are not isolated runtimes.
 
 #### Adding Additional Directories for a Group
 

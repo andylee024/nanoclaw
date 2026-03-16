@@ -20,8 +20,9 @@ The system is intentionally simple:
 - `Linear` is the live work tracker for commitments, projects, routines, and
   decisions
 - `Google Calendar` is the source of truth for real time commitments
-- `whatsapp_clawfitness` plus `Train` are the source of truth for workout
-  execution and logs
+- the dedicated training runtime (`telegram_clawfitness`,
+  `whatsapp_clawfitness`, or equivalent) plus `Train` are the source of truth
+  for workout execution and logs
 - `areas/` contains domain-specific operating rules for athlete, social, and
   calendar support
 - `skills` are reusable workflows for recurring or repeated work
